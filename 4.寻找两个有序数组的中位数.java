@@ -40,37 +40,46 @@ class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int len1 = nums1.length;
         int len2 = nums2.length;
-        int tempLen=len1+len2;
-        int[] temp = new int[tempLen];
-        int i = 0, j = 0, k = 0;
-        while (i < len1 && j < len2) {
-            if (nums1[i] < nums2[j]) {
-                temp[k] = nums1[i];
-                i++;
-                k++;
-            } else {
-                temp[k] = nums2[j];
-                j++;
-                k++;
+        int lengthAll = len1 + len2;
+
+        int inx1=0,inx2=0;
+        int x,y;
+        while(inx1+inx2<lengthAll){
+            if(inx1<len1){
+                while(inx2==len2||nums1[inx1]<nums2[inx2]){
+                    inx1++;
+                    if(inx1+inx2==(lengthAll+1)/2){
+                        x=nums1[inx1-1];
+                    }
+                    if(inx1+inx2==(lengthAll+2)/2){
+                        y=num1[inx1-1];
+                        return (x+y)*1.0/2;
+                    }
+                    if(inx1==len1){
+                        break;
+                    }
+                }
             }
-        }
-        while (i < len1) {
-            temp[k]=nums1[i];
-            i++;
-            k++;
-        }
-        while(j<len2){
-            temp[k]=nums2[j];
-            j++;
-            k++;
-        }
+            if(inx2<len2){
+                while(inx1==len1||nums2[inx2]<nums1[inx1]){
+                    inx2++;
+                    if(inx1+inx2==(lengthAll+1)/2){
+                        x=num2[inx2-1];
+                    }
+                    if(inx1+inx2==(lengthAll+2)/2){
+                        y=nums2[inx2-1];
+                        return (x+y)*1.0/2;
+                    }
+                    if(inx2==len2){
+                        break;
+                    }
+
+                }
+            }
         
-        double res=0;
-        if(tempLen%2==0){
-            res=(temp[tempLen/2]+temp[(tempLen/2)-1])*1.0/2;
-        }else{
-            res=temp[tempLen/2];
         }
-        return res;
+
+        return -1;
+
     }
 }
