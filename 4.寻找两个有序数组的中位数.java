@@ -1,4 +1,3 @@
-import com.sun.rowset.providers.RIOptimisticProvider;
 
 /*
  * @lc app=leetcode.cn id=4 lang=java
@@ -42,44 +41,47 @@ class Solution {
         int len2 = nums2.length;
         int lengthAll = len1 + len2;
 
-        int inx1=0,inx2=0;
-        int x,y;
-        while(inx1+inx2<lengthAll){
-            if(inx1<len1){
-                while(inx2==len2||nums1[inx1]<nums2[inx2]){
+        int inx1 = 0;
+        int inx2 = 0;
+        int x = -1;
+        int y = -1;
+        while (inx1 + inx2 < lengthAll) {
+            if (inx1 < len1) {
+                while (inx2 == len2 || nums1[inx1] <= nums2[inx2]) {
                     inx1++;
-                    if(inx1+inx2==(lengthAll+1)/2){
-                        x=nums1[inx1-1];
+                    if (inx1 + inx2 == (lengthAll + 1) / 2) {
+                        x = nums1[inx1 - 1];
                     }
-                    if(inx1+inx2==(lengthAll+2)/2){
-                        y=num1[inx1-1];
-                        return (x+y)*1.0/2;
+                    if (inx1 + inx2 == (lengthAll + 2) / 2) {
+                        y = nums1[inx1 - 1];
+                        return (x + y) * 1.0 / 2;
                     }
-                    if(inx1==len1){
+                    if (inx1 == len1) {
                         break;
                     }
                 }
             }
-            if(inx2<len2){
-                while(inx1==len1||nums2[inx2]<nums1[inx1]){
+            if (inx2 < len2) {
+                while (inx1 == len1 || nums2[inx2] <= nums1[inx1]) {
                     inx2++;
-                    if(inx1+inx2==(lengthAll+1)/2){
-                        x=num2[inx2-1];
+                    if (inx1 + inx2 == (lengthAll + 1) / 2) {
+                        x = nums2[inx2 - 1];
                     }
-                    if(inx1+inx2==(lengthAll+2)/2){
-                        y=nums2[inx2-1];
-                        return (x+y)*1.0/2;
+                    if (inx1 + inx2 == (lengthAll + 2) / 2) {
+                        y = nums2[inx2 - 1];
+                        return (x + y) * 1.0 / 2;
                     }
-                    if(inx2==len2){
+                    if (inx2 == len2) {
                         break;
                     }
 
                 }
             }
-        
+
         }
 
         return -1;
 
     }
 }
+
